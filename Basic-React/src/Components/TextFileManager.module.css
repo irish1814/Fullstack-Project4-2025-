@@ -1,0 +1,86 @@
+.manager {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 20%;
+    left: 90%;
+    height: 400px;
+    width: 400px;
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 0.5rem;
+    background-color: #f9f9f9;
+}
+
+.inputGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.input {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 0.375rem;
+    width: 10rem;
+}
+
+.button {
+    padding: 0.4rem 0.8rem;
+    border: none;
+    border-radius: 0.375rem;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.saveButton {
+    background-color: #3b82f6; /* blue */
+}
+
+.openButton {
+    background-color: #10b981; /* green */
+}
+
+.fileList {
+    position: absolute;
+    transform: translate(-50%,-50%);
+    top: 20%;
+    left: 90%;
+    height: 200px;
+    width: 380px;
+    margin-top: 80px;
+    background: #3b82f6;
+    border: 1px solid #ddd;
+    border-radius: 0.375rem;
+    padding: 0.5rem;
+}
+
+.fileItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.25rem 0;
+}
+
+.fileName {
+    color: #2563eb;
+    cursor: pointer;
+}
+
+.fileName:hover {
+    text-decoration: underline;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #ef4444;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.deleteButton:hover {
+    text-decoration: underline;
+}
