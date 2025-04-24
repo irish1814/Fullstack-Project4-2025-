@@ -43,22 +43,20 @@
     background-color: #10b981; /* green */
 }
 
-.fileList {
+.fileTable {
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 16%;
+    top: 23%;
     left: 90%;
     height: 300px;
-    width: 380px;
-    margin-top: 80px;
-    background: #3f3f3f;
+    width: 400px;
+    padding: 1rem;
     border: 1px solid #ddd;
-    border-radius: 0.375rem;
-    padding: 0.5rem;
+    border-radius: 0.5rem;
+    background-color: rgb(56, 56, 56);
 }
 
 .fileItem {
-    margin-left: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -75,7 +73,6 @@
 }
 
 .deleteButton {
-    margin-right: 30%;
     background: none;
     border: none;
     color: #ef4444;
@@ -85,4 +82,9 @@
 
 .deleteButton:hover {
     text-decoration: underline;
+}
+
+.tableHeader {
+    background-color: hsl(243 92% 35%);
+    border-radius: 10px;
 }

@@ -1,5 +1,5 @@
 import './App.css'
-import SimpleKeyboard from './Components/Keyboard'
+import Keyboard from './Components/Keyboard'
 import { TextFileManager } from './Components/FileManager'
 import TextDisplay from './Components/TextDisplay'
 
@@ -8,7 +8,7 @@ function App() {
     <>
       <TextFileManager />
       <TextDisplay />
-      <SimpleKeyboard />
+      <Keyboard />
     </>
   )
 }

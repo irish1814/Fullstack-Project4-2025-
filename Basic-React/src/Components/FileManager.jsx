@@ -60,14 +60,31 @@ export function TextFileManager({ text, setText }) {
                 </div>
             </div>
 
-            <div className={styles.fileList}>
-                {files.map((file) => (
-                    <div key={file} className={styles.fileItem}>
-                        <span className={styles.fileName} onClick={() => handleOpen(file)}>{file}</span>
-                        <button className={styles.deleteButton} onClick={() => handleDelete(file)}>Delete</button>
-                    </div>
-                ))}
-            </div>
+            <table className={styles.fileTable}>
+                <thead className={styles.tableHeader}>
+                    <tr>
+                        <th>Name</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {files.map((file) => (
+                        <tr key={file}>
+                            <td onClick={() => handleOpen(file)} className={styles.fileName}>
+                                {file}
+                            </td>
+                            <td>
+                                <button
+                                    className={styles.deleteButton}
+                                    onClick={() => handleDelete(file)}
+                                >
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                    ))}
+                </tbody>
+            </table>
         </>
     );
 }
