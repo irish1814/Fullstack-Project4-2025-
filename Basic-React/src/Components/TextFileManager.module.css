@@ -46,18 +46,19 @@
 .fileList {
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 20%;
+    top: 16%;
     left: 90%;
-    height: 200px;
+    height: 300px;
     width: 380px;
     margin-top: 80px;
-    background: #3b82f6;
+    background: #3f3f3f;
     border: 1px solid #ddd;
     border-radius: 0.375rem;
     padding: 0.5rem;
 }
 
 .fileItem {
+    margin-left: 30%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -74,6 +75,7 @@
 }
 
 .deleteButton {
+    margin-right: 30%;
     background: none;
     border: none;
     color: #ef4444;

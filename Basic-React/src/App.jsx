@@ -1,14 +1,14 @@
-import TextInput from './Components/TextInput'
 import './App.css'
-import { Keyboard } from './Components/Keyboard'
+import SimpleKeyboard from './Components/Keyboard'
 import { TextFileManager } from './Components/FileManager'
+import TextDisplay from './Components/TextDisplay'
 
 function App() {
   return (
     <>
       <TextFileManager />
-      <TextInput />
-      <Keyboard />
+      <TextDisplay />
+      <SimpleKeyboard />
     </>
   )
 }

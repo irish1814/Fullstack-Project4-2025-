@@ -1,8 +1,8 @@
 .keyboard {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    margin-top: 1rem;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    bottom: 0px;
+    left: 50%;
     background-color: #f3f3f3;
     padding: 1rem;
     border-radius: 12px;
@@ -16,6 +16,7 @@
 }
 
 .key {
+    margin-top: 5px;
     padding: 10px 16px;
     background-color: black;
     border: 1px solid #ccc;

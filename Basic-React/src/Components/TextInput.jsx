@@ -1,11 +1,12 @@
 import React from 'react';
+import styles from './TextInput.module.css';
 
 function TextInput() {
     return (
-    <div>
-        <p>Enter your text here:</p>
-        <input></input>
-    </div>);
+        <div className={styles.inputContainer}>
+            <textarea className={styles.textarea}></textarea>
+        </div>
+    );
 };
 
 export default TextInput;

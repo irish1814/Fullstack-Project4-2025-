@@ -1,10 +1,15 @@
 import React from 'react';
+import TextInput from './TextInput';
+import styles from './TetxDisplay.module.css'
 
-function TextDisplay({ text, fontSize, fontFamily, color }) {
+function TextDisplay() {
     return (
-        <div className="border p-4 rounded shadow bg-white" style={{ fontSize: `${fontSize}px`, fontFamily, color }}>
-            { text || 'Enter Text...'}
-        </div>
+        <main className={styles.grid}>
+            <TextInput/ >
+            <TextInput/ >
+            <TextInput/ >
+            <TextInput/ >
+        </main>
     );
 }
 
