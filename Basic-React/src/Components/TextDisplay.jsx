@@ -4,7 +4,7 @@ import Keyboard from './Keyboard';
 import styles from './TextDisplay.module.css';
 
 function TextDisplay() {
-    const [texts, setTexts] = useState(['', '', '', '']);
+    const [texts, setTexts] = useState(['']);
     const [activeInput, setActiveInput] = useState({ id: null, ref: null });
 
     const handleFocus = (id, ref) => {
@@ -29,7 +29,6 @@ function TextDisplay() {
 
             handleTextChange(id, updatedText);
 
-            // Manually update the cursor position after setState
             setTimeout(() => {
                 input.focus();
                 input.selectionStart = input.selectionEnd = start + char.length;
@@ -37,15 +36,42 @@ function TextDisplay() {
         }
     };
 
+    const addTextInput = () => {
+        setTexts([...texts, '']);
+    };
+
+    const removeTextInput = () => {
+        if (texts.length > 1) {
+            setTexts(texts.slice(0, -1));
+        }
+    };
+
     return (
+        <>
+        <div className={styles.buttonGroup}>
+            <button className={styles.addButton} onClick={addTextInput}>
+                ➕ Add 
+            </button>
+            <button className={styles.removeButton} onClick={removeTextInput}>
+                ➖ Remove
+            </button>
+        </div>
         <main className={styles.main}>
             <div className={styles.grid}>
-                {[0, 1, 2, 3].map((i) => (
-                    <TextInput key={i} id={i} value={texts[i]} onChange={handleTextChange} onFocus={handleFocus} />
+                {texts.map((text, i) => (
+                    <TextInput
+                        key={i}
+                        id={i}
+                        value={text}
+                        onChange={handleTextChange}
+                        onFocus={handleFocus}
+                    />
                 ))}
             </div>
+
             <Keyboard onKeyPress={handleKeyPress} />
         </main>
+        </>
     );
 }
 
