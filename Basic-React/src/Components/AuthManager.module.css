@@ -1,0 +1,228 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #121212;
+    font-family: Arial, sans-serif;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    max-width: 400px;
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.flex label {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.input {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 15px;
+    outline: none;
+    border: 1px solid rgba(105, 105, 105, 0.5);
+    border-radius: 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input:focus {
+    border-color: #00bfff;
+    box-shadow: 0 0 5px rgba(0, 191, 255, 0.5);
+}
+
+.input:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+}
+
+.input + span {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.9em;
+    pointer-events: none;
+    transition: 0.3s ease;
+}
+
+.input:placeholder-shown + span {
+    top: 18px;
+    font-size: 1em;
+}
+
+.input:focus + span,
+.input:valid + span {
+    color: #00bfff;
+    top: -5px;
+    font-size: 0.8em;
+    font-weight: 600;
+    background-color: #1a1a1a;
+    padding: 0 5px;
+    border-radius: 5px;
+}
+
+.submit {
+    padding: 15px;
+    border-radius: 10px;
+    background-color: #00bfff;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.submit:hover {
+    background-color: #00bfff96;
+    transform: translateY(-2px);
+}
+
+.submit:active {
+    transform: translateY(1px);
+}
+
+.message, .signin {
+    font-size: 14.5px;
+    color: rgba(255, 255, 255, 0.7);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.signin a {
+    color: #00bfff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.signin a:hover {
+    color: royalblue;
+    text-decoration: underline;
+}
+
+.title {
+    letter-spacing: -1px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding-left: 30px;
+    font-size: 28px;
+    font-weight: 600;
+    color: #00bfff;
+}
+
+.title::before {
+    width: 18px;
+    height: 18px;
+}
+
+.title::after {
+    width: 18px;
+    height: 18px;
+    animation: pulse 1s linear infinite;
+}
+
+.title::before,
+.title::after {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    left: 0px;
+    background-color: #00bfff;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(0.9);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(1.8);
+        opacity: 0;
+    }
+}
+
+/* Notification Styles */
+.notification {
+    display: none;
+    padding: 15px;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.7); 
+    backdrop-filter: blur(8px);
+    filter: brightness(1.2);
+    transition: opacity 0.3s ease;
+}
+
+.notification.success {
+    border: 2px solid #28a745;
+}
+
+.notification.info {
+    border: 2px solid #dc9935;
+}
+
+.notification.error {
+    border: 2px solid #dc3545;
+}
+
+@keyframes open {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes close {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+.notification.open {
+    display: block;
+    animation: open 0.5s ease forwards;
+}
+
+.notification.close {
+    animation: close 0.5s ease forwards;
+}
