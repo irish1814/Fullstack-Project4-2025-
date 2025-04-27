@@ -8,7 +8,7 @@
     gap: 20px;
     width: 100%;
     max-width: 1400px;
-    margin: 2rem auto 1rem auto;
+    margin: 0 auto;
     padding: 0 1rem;
     min-height: calc(100vh - 200px);
 }
@@ -280,7 +280,7 @@
     flex-wrap: wrap;
     gap: 1.5rem;
     justify-content: center;
-    margin-bottom: 7rem; /* Space for keyboard */
+    margin-bottom: 2rem; /* Space for keyboard */
 }
 
 .textAreaWrapper {
@@ -318,11 +318,7 @@
 /* Keyboard Section */
 .keyboardSection {
     grid-area: keyboard;
-    position: fixed;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    z-index: 100;
+    margin-top: 2rem;
     padding: 0 1rem;
 }
 
@@ -398,17 +394,9 @@
         max-width: 600px;
         margin: 0 auto;
     }
-
-    .textsContainer {
-        margin-bottom: 9rem;
-    }
 }
 
 @media (max-width: 768px) {
-    .textsContainer {
-        margin-bottom: 11rem;
-    }
-
     .textAreaWrapper {
         width: 100%;
     }

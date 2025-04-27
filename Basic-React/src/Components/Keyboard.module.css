@@ -1,10 +1,7 @@
-
 .keyboardPanel {
-    position: absolute;
-    transform: translate(-50%,-20%);
-    bottom: 5%;
-    left: 50%;
-    width: 500px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
     padding: 1rem;
     background: #f0f0f0;
     border-radius: 0.5rem;
@@ -18,12 +15,16 @@
     flex-wrap: wrap;
 }
 
-.tabs button {
+.tab, .activeTab {
     padding: 0.4rem 0.8rem;
     border: none;
-    background-color: #a51212;
     border-radius: 0.375rem;
     cursor: pointer;
+}
+
+.tab {
+    background-color: #e0e0e0;
+    color: #333;
 }
 
 .activeTab {
@@ -36,25 +37,100 @@
     flex-direction: column;
     gap: 0.5rem;
 }
+
 .keyRow {
     display: flex;
     gap: 0.5rem;
     margin-bottom: 0.5rem;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
-.keyRow button {
+.key, .styleKey, .scopeKey, .actionKey, .advancedKey, .controlKey, .spaceKey, .langKey {
     padding: 0.4rem 0.8rem;
     border: 1px solid #ccc;
     border-radius: 0.375rem;
-    background-color: rgb(132, 70, 36);
+    background-color: white;
     cursor: pointer;
-    color: white;
+    color: #333;
+    transition: all 0.2s ease;
 }
 
-.keyRow input[type="color"] {
+.key:hover, .styleKey:hover, .scopeKey:hover, .actionKey:hover, .advancedKey:hover, .controlKey:hover, .spaceKey:hover, .langKey:hover {
+    background-color: #f5f5f5;
+    border-color: #3b82f6;
+}
+
+.styleKey {
+    background-color: #f3f4f6;
+}
+
+.scopeKey {
+    background-color: #e0f2fe;
+}
+
+.actionKey {
+    background-color: #fee2e2;
+}
+
+.advancedKey {
+    background-color: #d1fae5;
+}
+
+.controlKey {
+    flex: 1;
+    background-color: #f3f4f6;
+}
+
+.spaceKey {
+    flex: 3;
+    background-color: #f3f4f6;
+}
+
+.langKey {
+    flex: 1;
+    background-color: #e0e7ff;
+}
+
+.activeKey {
+    background-color: #3b82f6 !important;
+    color: white !important;
+    border-color: #2563eb !important;
+}
+
+.controlRow {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.languageRow {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.styleSection {
+    margin-bottom: 1rem;
+}
+
+.styleSection h4 {
+    margin: 0.5rem 0;
+    color: #333;
+}
+
+.colorPicker {
+    display: flex;
+    align-items: center;
+}
+
+.colorInput {
     width: 40px;
     height: 30px;
     border: none;
     cursor: pointer;
+}
+
+.colorKey {
+    color: inherit;
 }
