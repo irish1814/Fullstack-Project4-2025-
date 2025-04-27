@@ -1,90 +1,286 @@
 .manager {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 20%;
-    left: 90%;
-    height: 400px;
-    width: 400px;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    background-color: #f9f9f9;
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    width: 300px;
+    padding: 1.2rem;
+    border-radius: 10px;
+    background-color: #2a2a2a;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid #3d6aff;
+    z-index: 50;
+}
+
+.title {
+    color: #e0e0e0;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+    border-bottom: 1px solid #3d3d3d;
+    padding-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #e0e0e0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.fileCount {
+    font-size: 0.8rem;
+    color: #aaa;
+    font-weight: normal;
 }
 
 .inputGroup {
     display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    align-items: center;
+    flex-direction: column;
+    gap: 0.8rem;
     margin-bottom: 1rem;
 }
 
 .input {
-    padding: 0.4rem 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 0.375rem;
-    width: 10rem;
+    padding: 0.7rem;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+    background-color: #333;
+    color: #e0e0e0;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #3d6aff;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 0.8rem;
 }
 
 .button {
-    padding: 0.4rem 0.8rem;
+    padding: 0.7rem 0;
     border: none;
-    border-radius: 0.375rem;
+    border-radius: 6px;
     color: white;
     cursor: pointer;
-    font-weight: bold;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s ease;
 }
 
 .saveButton {
-    background-color: #3b82f6; /* blue */
+    background-color: #3d6aff;
+}
+
+.saveButton:hover {
+    background-color: #2d58e5;
 }
 
 .openButton {
-    background-color: #10b981; /* green */
+    background-color: #00b894;
 }
 
-.fileTable {
-    position: absolute;
-    transform: translate(-50%,-50%);
-    top: 23%;
-    left: 90%;
-    height: 300px;
-    width: 400px;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 0.5rem;
-    background-color: rgb(56, 56, 56);
+.openButton:hover {
+    background-color: #00a382;
+}
+
+/* Drop Zone */
+.dropZone {
+    width: 100%;
+    height: 80px;
+    border: 2px dashed #3d3d3d;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropZone:hover {
+    border-color: #3d6aff;
+    background-color: rgba(61, 106, 255, 0.05);
+}
+
+.dropZone.active {
+    border-color: #3d6aff;
+    background-color: rgba(61, 106, 255, 0.1);
+}
+
+.dropZoneContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa;
+}
+
+.dropIcon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropZoneContent p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.fileListContainer {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    border-top: 1px solid #3d3d3d;
+    padding-top: 0.5rem;
+}
+
+.fileList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .fileItem {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.25rem 0;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #3d3d3d;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    cursor: grab;
+}
+
+.fileItem:hover {
+    background-color: #333;
+}
+
+.fileItem.dragging {
+    opacity: 0.5;
+    background-color: #3d6aff20;
+    border: 1px dashed #3d6aff;
+}
+
+.fileItemContent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.dragHandle {
+    color: #777;
+    cursor: grab;
+    font-size: 1.2rem;
+    user-select: none;
 }
 
 .fileName {
-    color: #2563eb;
+    color: #3d6aff;
     cursor: pointer;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .fileName:hover {
+    color: #6f8fff;
     text-decoration: underline;
 }
 
 .deleteButton {
     background: none;
     border: none;
-    color: #ef4444;
+    color: #ff5e5e;
     cursor: pointer;
-    font-size: 0.875rem;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
 }
 
 .deleteButton:hover {
-    text-decoration: underline;
+    color: #ff3d3d;
+    background-color: rgba(255, 93, 93, 0.1);
 }
 
-.tableHeader {
-    background-color: hsl(243 92% 35%);
+.noFiles {
+    text-align: center;
+    color: #aaa;
+    font-style: italic;
+    margin: 1rem 0;
+}
+
+/* Notification system */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    background-color: #2a2a2a;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification.success {
+    border-left: 4px solid #00b894;
+}
+
+.notification.error {
+    border-left: 4px solid #ff5e5e;
+}
+
+.notification.info {
+    border-left: 4px solid #3d6aff;
+}
+
+/* Scrollbar styling */
+.fileListContainer::-webkit-scrollbar {
+    width: 6px;
+}
+
+.fileListContainer::-webkit-scrollbar-track {
+    background: #1e1e1e;
     border-radius: 10px;
+}
+
+.fileListContainer::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+    border-radius: 10px;
+}
+
+.fileListContainer::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+@media (max-width: 768px) {
+    .manager {
+        position: relative;
+        top: 0;
+        right: 0;
+        width: 100%;
+        margin: 1rem auto;
+        max-width: 500px;
+    }
 }

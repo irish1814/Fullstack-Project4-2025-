@@ -1,67 +1,415 @@
-main {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 2rem;
-    width: 700px;
-}
-
-.grid {
-    display: flex;
-    gap: 50px; /* Space between text areas */
+.appLayout {
+    display: grid;
+    grid-template-areas:
+        "files editor"
+        "keyboard keyboard";
+    grid-template-columns: 300px 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 20px;
     width: 100%;
+    max-width: 1400px;
+    margin: 2rem auto 1rem auto;
+    padding: 0 1rem;
+    min-height: calc(100vh - 200px);
 }
 
-.inputContainer {
-    position: relative;
-    width: 100%; 
+/* File Section */
+.fileSection {
+    grid-area: files;
+    background-color: #2a2a2a;
+    border-radius: 10px;
+    padding: 1.2rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    border: 1px solid #3d3d3d;
+    height: fit-content;
+    max-height: 80vh;
+    overflow-y: auto;
 }
 
-.textarea {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 0.375rem;
+.sectionTitle {
+    color: #e0e0e0;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.3rem;
+    text-align: center;
+    border-bottom: 1px solid #3d3d3d;
+    padding-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #e0e0e0;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
     font-size: 1rem;
-    height: 200px; 
-}
-
-.controls {
+    font-weight: 600;
     display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
     align-items: center;
+    justify-content: space-between;
 }
 
-.inputContainer input {
+.fileCount {
+    font-size: 0.8rem;
+    color: #aaa;
+    font-weight: normal;
+}
+
+.inputGroup {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+
+.input {
+    padding: 0.7rem;
+    border: 1px solid #3d3d3d;
+    border-radius: 6px;
+    background-color: #333;
+    color: #e0e0e0;
     width: 100%;
-    height: 200px;
-    background-color: rgb(189, 199, 199);
+    font-size: 1rem;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #3d6aff;
+}
+
+.buttonContainer {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.button {
+    padding: 0.7rem 0;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+    font-weight: 600;
+    flex: 1;
+    transition: all 0.2s ease;
+}
+
+.saveButton {
+    background-color: #3d6aff;
+}
+
+.saveButton:hover {
+    background-color: #2d58e5;
+}
+
+.openButton {
+    background-color: #00b894;
+}
+
+.openButton:hover {
+    background-color: #00a382;
+}
+
+/* Drop Zone */
+.dropZone {
+    width: 100%;
+    height: 80px;
+    border: 2px dashed #3d3d3d;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dropZone:hover {
+    border-color: #3d6aff;
+    background-color: rgba(61, 106, 255, 0.05);
+}
+
+.dropZone.active {
+    border-color: #3d6aff;
+    background-color: rgba(61, 106, 255, 0.1);
+}
+
+.dropZoneContent {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #aaa;
+}
+
+.dropIcon {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropZoneContent p {
+    margin: 0;
+    font-size: 0.85rem;
+}
+
+.fileListContainer {
+    max-height: 300px;
+    overflow-y: auto;
+    margin-top: 1rem;
+    border-top: 1px solid #3d3d3d;
+    padding-top: 0.5rem;
+}
+
+.fileList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.fileItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0.5rem;
+    border-bottom: 1px solid #3d3d3d;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+    cursor: grab;
+}
+
+.fileItem:hover {
+    background-color: #333;
+}
+
+.fileItem.dragging {
+    opacity: 0.5;
+    background-color: #3d6aff20;
+    border: 1px dashed #3d6aff;
+}
+
+.fileItemContent {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1;
+}
+
+.dragHandle {
+    color: #777;
+    cursor: grab;
+    font-size: 1.2rem;
+    user-select: none;
+}
+
+.fileName {
+    color: #3d6aff;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.fileName:hover {
+    color: #6f8fff;
+    text-decoration: underline;
+}
+
+.deleteButton {
+    background: none;
+    border: none;
+    color: #ff5e5e;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: color 0.2s ease;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+}
+
+.deleteButton:hover {
+    color: #ff3d3d;
+    background-color: rgba(255, 93, 93, 0.1);
+}
+
+.noFiles {
+    text-align: center;
+    color: #aaa;
+    font-style: italic;
+    margin: 1rem 0;
+}
+
+/* Editor Section */
+.editorSection {
+    grid-area: editor;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
 }
 
 .buttonGroup {
     display: flex;
-    gap: 1rem;
-    margin-top: 1rem;
-    align-self: flex-start;
-}
-
-.addButton,
-.removeButton {
-    width: 100px;
-    padding: 0.5rem 1rem;
-    border: none;
-    color: white;
-    border-radius: 0.375rem;
-    font-weight: bold;
-    cursor: pointer;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
 .addButton {
-    background-color: hsl(135 92% 39%);
+    padding: 0.8rem 1.5rem;
+    border: none;
+    background-color: #3d6aff;
+    color: white;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 3px 6px rgba(61, 106, 255, 0.3);
+}
+
+.addButton:hover {
+    background-color: #2d58e5;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 10px rgba(61, 106, 255, 0.4);
+}
+
+.addButton:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(61, 106, 255, 0.3);
+}
+
+.textsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-bottom: 7rem; /* Space for keyboard */
+}
+
+.textAreaWrapper {
+    position: relative;
+    width: 350px;
+    margin-bottom: 1rem;
 }
 
 .removeButton {
-    background-color: hsl(0 92% 40%);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    background-color: #ff3d3d;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 0;
+    opacity: 0.8;
+    transition: all 0.2s ease;
+    z-index: 10;
+}
+
+.removeButton:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Keyboard Section */
+.keyboardSection {
+    grid-area: keyboard;
+    position: fixed;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    padding: 0 1rem;
+}
+
+/* Notification system */
+.notification {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    background-color: #2a2a2a;
+    color: white;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    transform: translateY(100px);
+    opacity: 0;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.notification.visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.notification.success {
+    border-left: 4px solid #00b894;
+}
+
+.notification.error {
+    border-left: 4px solid #ff5e5e;
+}
+
+.notification.info {
+    border-left: 4px solid #3d6aff;
+}
+
+/* Scrollbar styling */
+.fileListContainer::-webkit-scrollbar,
+.fileSection::-webkit-scrollbar {
+    width: 6px;
+}
+
+.fileListContainer::-webkit-scrollbar-track,
+.fileSection::-webkit-scrollbar-track {
+    background: #1e1e1e;
+    border-radius: 10px;
+}
+
+.fileListContainer::-webkit-scrollbar-thumb,
+.fileSection::-webkit-scrollbar-thumb {
+    background: #3d3d3d;
+    border-radius: 10px;
+}
+
+.fileListContainer::-webkit-scrollbar-thumb:hover,
+.fileSection::-webkit-scrollbar-thumb:hover {
+    background: #4d4d4d;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+    .appLayout {
+        grid-template-areas:
+            "files"
+            "editor"
+            "keyboard";
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+    }
+
+    .fileSection {
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .textsContainer {
+        margin-bottom: 9rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .textsContainer {
+        margin-bottom: 11rem;
+    }
+
+    .textAreaWrapper {
+        width: 100%;
+    }
 }

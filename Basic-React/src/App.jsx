@@ -1,41 +1,52 @@
 import './App.css'
-import Keyboard from './Components/Keyboard'
-import { TextFileManager } from './Components/FileManager'
 import TextDisplay from './Components/TextDisplay'
 import AuthManager from './Components/AuthManager'
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getCookie, deleteCookie } from './Components/Cookies.js';
 
 function App() {
-  const [userEmail, setUserEmail] = useState(() => {
-    return getCookie('userEmail') || null;
-  });
+    const [userEmail, setUserEmail] = useState(null);
 
-  const handleLogin = (email) => {
-    setUserEmail(email);
-  };
+    // Load user from cookie on initial render
+    useEffect(() => {
+        const savedUser = getCookie('userEmail');
+        if (savedUser) {
+            setUserEmail(savedUser);
+        }
+    }, []);
 
-  const handleLogout = () => {
-    deleteCookie('userEmail');
-    setUserEmail(null);
-  };
+    const handleLogin = (email) => {
+        setUserEmail(email);
+    };
 
-  if (!userEmail) {
-    return <AuthManager onLogin={handleLogin} />
-  }
+    const handleLogout = () => {
+        deleteCookie('userEmail');
+        setUserEmail(null);
+    };
 
-  return (
-    <>
-      <header>
-        <h2>Welcome Back {userEmail}</h2>
-        <button onClick={handleLogout}> Logout </button>
-      </header>
+    if (!userEmail) {
+        return <AuthManager onLogin={handleLogin} />
+    }
 
-      <TextFileManager userEmail={userEmail} />
-      <TextDisplay />
-      <Keyboard />
-    </>
-  );
+    return (
+        <div className="app-container">
+            <header className="app-header">
+                <h2>Visual Text Editor</h2>
+                <div className="user-section">
+                    <span className="user-email">{userEmail}</span>
+                    <button className="logout-button" onClick={handleLogout}>Logout</button>
+                </div>
+            </header>
+
+            <main className="app-main">
+                <TextDisplay userEmail={userEmail} />
+            </main>
+
+            <footer className="app-footer">
+                <p>Full-Stack Web Development Project © {new Date().getFullYear()}</p>
+            </footer>
+        </div>
+    );
 }
 
 export default App;
