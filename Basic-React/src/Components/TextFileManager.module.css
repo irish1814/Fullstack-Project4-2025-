@@ -1,8 +1,8 @@
 .manager {
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 20%;
-    left: 90%;
+    top: 30%;
+    left: 88%;
     height: 400px;
     width: 400px;
     padding: 1rem;
@@ -46,8 +46,8 @@
 .fileTable {
     position: absolute;
     transform: translate(-50%,-50%);
-    top: 23%;
-    left: 90%;
+    top: 34%;
+    left: 88%;
     height: 300px;
     width: 400px;
     padding: 1rem;

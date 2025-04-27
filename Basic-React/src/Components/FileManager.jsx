@@ -61,12 +61,6 @@ export function TextFileManager({ text, setText }) {
             </div>
 
             <table className={styles.fileTable}>
-                <thead className={styles.tableHeader}>
-                    <tr>
-                        <th>Name</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
                 <tbody>
                     {files.map((file) => (
                         <tr key={file}>
