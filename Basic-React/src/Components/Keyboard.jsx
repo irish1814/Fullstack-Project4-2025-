@@ -208,6 +208,7 @@ function Keyboard({ onKeyPress, onStyleChange, onAction }) {
         }
     };
 
+
     return (
         <div className={styles.keyboardPanel}>
             <div className={styles.tabs}>
